@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NISSI — Official</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body class="loading">
+
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo"></div>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+      <div class="loader-text">Loading Experience…</div>
+    </div>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
+  <div id="cursor-trail"></div>
+
+  <!-- PARTICLES CANVAS -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- FIXED BG -->
+  <div id="bg-fixed">
+    <div id="bg-overlay"></div>
+  </div>
+
+  <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-logo">NISSI</div>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#music">Music</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#store">Store</a></li>
+      <li><a href="#merch">Merch</a></li>
+      <li><a href="#tour">Tour</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#hero">Home</a>
+      <a href="#music">Music</a>
+      <a href="#videos">Videos</a>
+      <a href="#store">Store</a>
+      <a href="#merch">Merch</a>
+      <a href="#tour">Tour</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-sub reveal-up">The Sound of Another Dimension</p>
+      <h1 class="hero-title reveal-up">NISSI</h1>
+      <p class="hero-tagline reveal-up">Beats forged in fire. <em>Frequencies beyond the known.</em></p>
+      <div class="hero-btns reveal-up">
+        <a href="#music" class="btn btn-primary"><i class="fa-solid fa-play"></i> Listen Now</a>
+        <a href="#videos" class="btn btn-ghost"><i class="fa-solid fa-film"></i> Watch Videos</a>
+      </div>
+    </div>
+    <!-- Side waveform visualizer -->
+    <canvas id="side-waveform"></canvas>
+  </section>
+
+  <!-- ═══════════════════════════ PLAYER ═══════════════════════════ -->
+  <section id="player-section">
+    <div class="player-wrap">
+      <div class="player-disc-col">
+        <div class="vinyl-wrap" id="vinylWrap">
+          <div class="vinyl-ring r1"></div>
+          <div class="vinyl-ring r2"></div>
+          <div class="vinyl-ring r3"></div>
+          <img class="vinyl-art" id="vinylArt" src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Album Art" />
+          <div class="vinyl-label">NISSI</div>
+        </div>
+      </div>
+      <div class="player-controls-col">
+        <div class="player-meta">
+          <span class="player-track-name" id="trackName">Banger</span>
+          <span class="player-artist">NISSI</span>
+        </div>
+        <canvas id="player-waveform"></canvas>
+        <div class="player-progress-wrap">
+          <span class="player-time" id="currentTime">0:00</span>
+          <div class="player-progress" id="progressBar">
+            <div class="player-progress-fill" id="progressFill"></div>
+            <div class="player-progress-thumb" id="progressThumb"></div>
+          </div>
+          <span class="player-time" id="totalTime">3:45</span>
+        </div>
+        <div class="player-btns">
+          <button class="ctrl-btn" id="prevBtn"><i class="fa-solid fa-backward-step"></i></button>
+          <button class="ctrl-btn play-btn" id="playBtn"><i class="fa-solid fa-play" id="playIcon"></i></button>
+          <button class="ctrl-btn" id="nextBtn"><i class="fa-solid fa-forward-step"></i></button>
+        </div>
+        <div class="player-volume">
+          <i class="fa-solid fa-volume-low"></i>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8" />
+          <i class="fa-solid fa-volume-high"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+  <section id="about" class="section-pad">
+    <div class="container split-layout">
+      <div class="split-img reveal-left">
+        <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Nissi portrait" />
+        <div class="img-frame-deco"></div>
+      </div>
+      <div class="split-text reveal-right">
+        <span class="section-eyebrow">Origin Story</span>
+        <h2 class="section-title">Born from the<br /><em>Static</em> Between Worlds</h2>
+        <p>Nissi is not a name — it's a frequency. Rising from the intersection of raw emotion and future-forward sound design, this artist crafts sonic landscapes that blur genre, time, and dimension.</p>
+        <p>From midnight sessions in a home studio to stages that shake the floor, every beat is a chapter. Every track is a doorway. Step through.</p>
+        <div class="about-stats">
+          <div class="stat"><span class="stat-num">2M+</span><span class="stat-label">Monthly Listeners</span></div>
+          <div class="stat"><span class="stat-num">47</span><span class="stat-label">Releases</span></div>
+          <div class="stat"><span class="stat-num">12</span><span class="stat-label">Countries Toured</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ MUSIC ═══════════════════════════ -->
+  <section id="music" class="section-pad">
+    <div class="container">
+      <span class="section-eyebrow reveal-up">Discography</span>
+      <h2 class="section-title reveal-up">Latest <em>Releases</em></h2>
+
+      <!-- STREAMING CAPSULES -->
+      <div class="capsules-stack">
+
+        <!-- ── FEATURED: TORNADO ── -->
+        <div class="capsule capsule-featured reveal-up" data-track="0" data-delay="0">
+          <div class="capsule-art-wrap">
+            <img class="capsule-art" src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779905013/tornado_bfnl8q.jpg" alt="Tornado" />
+            <div class="capsule-art-glow"></div>
+          </div>
+          <div class="capsule-body">
+            <div class="capsule-meta">
+              <div class="capsule-label">SINGLE · 2024</div>
+              <h3 class="capsule-title">Tornado</h3>
+              <div class="capsule-artist">NISSI</div>
+            </div>
+            <canvas class="capsule-wave" data-trackid="0"></canvas>
+            <div class="capsule-progress-row">
+              <span class="capsule-time-cur" data-trackid="0">0:00</span>
+              <div class="capsule-scrubber" data-trackid="0">
+                <div class="capsule-scrubber-fill"></div>
+                <div class="capsule-scrubber-dot"></div>
+              </div>
+              <span class="capsule-time-dur" data-trackid="0">—</span>
+            </div>
+            <div class="capsule-controls">
+              <button class="cap-play-btn" data-trackid="0" aria-label="Play Tornado">
+                <span class="cap-play-icon"><i class="fa-solid fa-play"></i></span>
+                <svg class="cap-spinner" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" fill="none" stroke-width="2"/></svg>
+              </button>
+              <div class="capsule-stream-btns">
+                <a href="https://open.spotify.com/track/1IMAFcIDPJ1kpCcOtLghst?si=R8L6uBsYT82GWSu5TKrQUA" target="_blank" class="stream-btn stream-spotify" title="Listen on Spotify">
+                  <i class="fa-brands fa-spotify"></i><span>Spotify</span>
+                </a>
+                <a href="https://music.apple.com/ng/album/tornado/1516887795?i=1516887805&ls" target="_blank" class="stream-btn stream-apple" title="Listen on Apple Music">
+                  <i class="fa-brands fa-apple"></i><span>Apple Music</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="capsule-glow-ring"></div>
+        </div>
+
+        <!-- ── SECONDARY ROW ── -->
+        <div class="capsules-row">
+
+          <!-- NOBODY -->
+          <div class="capsule reveal-up" data-track="1" data-delay="80">
+            <div class="capsule-art-wrap">
+              <img class="capsule-art" src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779905014/nobody_dh5nyj.jpg" alt="Nobody" />
+              <div class="capsule-art-glow"></div>
+            </div>
+            <div class="capsule-body">
+              <div class="capsule-meta">
+                <div class="capsule-label">SINGLE · 2023</div>
+                <h3 class="capsule-title">Nobody</h3>
+                <div class="capsule-artist">NISSI feat. Fireboy DML</div>
+              </div>
+              <canvas class="capsule-wave" data-trackid="1"></canvas>
+              <div class="capsule-progress-row">
+                <span class="capsule-time-cur" data-trackid="1">0:00</span>
+                <div class="capsule-scrubber" data-trackid="1">
+                  <div class="capsule-scrubber-fill"></div>
+                  <div class="capsule-scrubber-dot"></div>
+                </div>
+                <span class="capsule-time-dur" data-trackid="1">—</span>
+              </div>
+              <div class="capsule-controls">
+                <button class="cap-play-btn" data-trackid="1" aria-label="Play Nobody">
+                  <span class="cap-play-icon"><i class="fa-solid fa-play"></i></span>
+                  <svg class="cap-spinner" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" fill="none" stroke-width="2"/></svg>
+                </button>
+                <div class="capsule-stream-btns">
+                  <a href="https://open.spotify.com/track/5S6c5dAxj2BlocOOHV3tya?si=SV4QC8ryS_Kk1SOZ5SCJwg" target="_blank" class="stream-btn stream-spotify"><i class="fa-brands fa-spotify"></i><span>Spotify</span></a>
+                  <a href="https://music.apple.com/ng/album/nobody-feat-fireboy-dml/1702595525?i=1702595964&ls" target="_blank" class="stream-btn stream-apple"><i class="fa-brands fa-apple"></i><span>Apple</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="capsule-glow-ring"></div>
+          </div>
+
+          <!-- JUDI -->
+          <div class="capsule reveal-up" data-track="2" data-delay="160">
+            <div class="capsule-art-wrap">
+              <img class="capsule-art" src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779905012/judi_vqbf8k.jpg" alt="JUDI" />
+              <div class="capsule-art-glow"></div>
+            </div>
+            <div class="capsule-body">
+              <div class="capsule-meta">
+                <div class="capsule-label">SINGLE · 2020</div>
+                <h3 class="capsule-title">JUDI</h3>
+                <div class="capsule-artist">NISSI</div>
+              </div>
+              <canvas class="capsule-wave" data-trackid="2"></canvas>
+              <div class="capsule-progress-row">
+                <span class="capsule-time-cur" data-trackid="2">0:00</span>
+                <div class="capsule-scrubber" data-trackid="2">
+                  <div class="capsule-scrubber-fill"></div>
+                  <div class="capsule-scrubber-dot"></div>
+                </div>
+                <span class="capsule-time-dur" data-trackid="2">—</span>
+              </div>
+              <div class="capsule-controls">
+                <button class="cap-play-btn" data-trackid="2" aria-label="Play JUDI">
+                  <span class="cap-play-icon"><i class="fa-solid fa-play"></i></span>
+                  <svg class="cap-spinner" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" fill="none" stroke-width="2"/></svg>
+                </button>
+                <div class="capsule-stream-btns">
+                  <a href="https://open.spotify.com/track/2NSkhQmS7BFNRcyaxZtRe6?si=rtZSflAXSnC84q7CWED59g" target="_blank" class="stream-btn stream-spotify"><i class="fa-brands fa-spotify"></i><span>Spotify</span></a>
+                  <a href="https://music.apple.com/ng/album/judi/1518593852?i=1518593853&ls" target="_blank" class="stream-btn stream-apple"><i class="fa-brands fa-apple"></i><span>Apple</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="capsule-glow-ring"></div>
+          </div>
+
+        </div><!-- /capsules-row -->
+
+        <!-- ── TERTIARY ROW ── -->
+        <div class="capsules-row">
+
+          <!-- MOTIVATE -->
+          <div class="capsule reveal-up" data-track="3" data-delay="240">
+            <div class="capsule-art-wrap">
+              <img class="capsule-art" src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779905013/motivate_mu0nab.jpg" alt="Motivate" />
+              <div class="capsule-art-glow"></div>
+            </div>
+            <div class="capsule-body">
+              <div class="capsule-meta">
+                <div class="capsule-label">SINGLE · 2024</div>
+                <h3 class="capsule-title">Motivate</h3>
+                <div class="capsule-artist">NISSI feat. Olamide</div>
+              </div>
+              <canvas class="capsule-wave" data-trackid="3"></canvas>
+              <div class="capsule-progress-row">
+                <span class="capsule-time-cur" data-trackid="3">0:00</span>
+                <div class="capsule-scrubber" data-trackid="3">
+                  <div class="capsule-scrubber-fill"></div>
+                  <div class="capsule-scrubber-dot"></div>
+                </div>
+                <span class="capsule-time-dur" data-trackid="3">—</span>
+              </div>
+              <div class="capsule-controls">
+                <button class="cap-play-btn" data-trackid="3" aria-label="Play Motivate">
+                  <span class="cap-play-icon"><i class="fa-solid fa-play"></i></span>
+                  <svg class="cap-spinner" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" fill="none" stroke-width="2"/></svg>
+                </button>
+                <div class="capsule-stream-btns">
+                  <a href="https://open.spotify.com/track/6a0MFMtkaQKYUOnTQrwgBc?si=dSt3izbrTCGznaPqaCJK8Q" target="_blank" class="stream-btn stream-spotify"><i class="fa-brands fa-spotify"></i><span>Spotify</span></a>
+                  <a href="https://music.apple.com/ng/album/motivate-feat-olamide/1836281611?i=1836281612&ls" target="_blank" class="stream-btn stream-apple"><i class="fa-brands fa-apple"></i><span>Apple</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="capsule-glow-ring"></div>
+          </div>
+
+          <!-- IGNITE -->
+          <div class="capsule reveal-up" data-track="4" data-delay="320">
+            <div class="capsule-art-wrap">
+              <img class="capsule-art" src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779904991/ignite_al7eju.jpg" alt="IGNITE" />
+              <div class="capsule-art-glow"></div>
+            </div>
+            <div class="capsule-body">
+              <div class="capsule-meta">
+                <div class="capsule-label">SINGLE · 2020</div>
+                <h3 class="capsule-title">IGNITE</h3>
+                <div class="capsule-artist">NISSI</div>
+              </div>
+              <canvas class="capsule-wave" data-trackid="4"></canvas>
+              <div class="capsule-progress-row">
+                <span class="capsule-time-cur" data-trackid="4">0:00</span>
+                <div class="capsule-scrubber" data-trackid="4">
+                  <div class="capsule-scrubber-fill"></div>
+                  <div class="capsule-scrubber-dot"></div>
+                </div>
+                <span class="capsule-time-dur" data-trackid="4">—</span>
+              </div>
+              <div class="capsule-controls">
+                <button class="cap-play-btn" data-trackid="4" aria-label="Play IGNITE">
+                  <span class="cap-play-icon"><i class="fa-solid fa-play"></i></span>
+                  <svg class="cap-spinner" viewBox="0 0 44 44"><circle cx="22" cy="22" r="19" fill="none" stroke-width="2"/></svg>
+                </button>
+                <div class="capsule-stream-btns">
+                  <a href="https://open.spotify.com/track/5S6c5dAxj2BlocOOHV3tya?si=SV4QC8ryS_Kk1SOZ5SCJwg" target="_blank" class="stream-btn stream-spotify"><i class="fa-brands fa-spotify"></i><span>Spotify</span></a>
+                  <a href="https://music.apple.com/ng/album/ignite/1516887795?i=1516887796&ls" target="_blank" class="stream-btn stream-apple"><i class="fa-brands fa-apple"></i><span>Apple</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="capsule-glow-ring"></div>
+          </div>
+
+        </div><!-- /capsules-row tertiary -->
+
+      </div><!-- /capsules-stack -->
+
+      <!-- LEGACY GRID (hidden - kept for JS compat) -->
+      <div class="music-grid" style="display:none;">
+        <div class="music-card reveal-up" data-delay="0">
+          <div class="music-card-img">
+            <img src="" alt="Banger" />
+            <div class="music-card-overlay"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="music-card-info">
+            <h3>Banger</h3>
+            <p>Single • 2025</p>
+            <div class="platform-btns">
+              <a href="#" class="plat-btn spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>
+              <a href="#" class="plat-btn apple"><i class="fa-brands fa-apple"></i> Apple</a>
+            </div>
+          </div>
+        </div>
+        <div class="music-card reveal-up" data-delay="100">
+          <div class="music-card-img">
+            <img src="" alt="Static Realm" />
+            <div class="music-card-overlay"><i class="fa-solid fa-play"></i></div>
+          </div>
+          <div class="music-card-info">
+            <h3>Static Realm</h3>
+            <p>EP • 2024</p>
+          </div>
+        </div>
+      </div><!-- /hidden music-grid -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ VIDEOS ═══════════════════════════ -->
+  <section id="videos" class="section-pad">
+    <div class="container">
+      <span class="section-eyebrow reveal-up">Visual Universe</span>
+      <h2 class="section-title reveal-up">Watch &amp; <em>Experience</em></h2>
+      <div class="video-grid">
+        <div class="video-card reveal-up" data-delay="0">
+          <div class="video-thumb">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Video 1" />
+            <div class="video-overlay">
+              <div class="play-ring"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <span class="video-dur">3:47</span>
+          </div>
+          <p class="video-title">Banger — Official Video</p>
+        </div>
+        <div class="video-card reveal-up" data-delay="150">
+          <div class="video-thumb">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Video 2" />
+            <div class="video-overlay">
+              <div class="play-ring"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <span class="video-dur">5:12</span>
+          </div>
+          <p class="video-title">Static Realm — Live Session</p>
+        </div>
+        <div class="video-card reveal-up" data-delay="300">
+          <div class="video-thumb">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Video 3" />
+            <div class="video-overlay">
+              <div class="play-ring"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <span class="video-dur">4:02</span>
+          </div>
+          <p class="video-title">Neon Cathedral — Documentary</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ GALLERY ═══════════════════════════ -->
+  <section id="gallery" class="section-pad">
+    <div class="container">
+      <span class="section-eyebrow reveal-up">Gallery</span>
+      <h2 class="section-title reveal-up">Behind the <em>Frame</em></h2>
+      <div class="gallery-grid">
+        <div class="gallery-item gi-tall reveal-up" data-delay="0"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g1" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item reveal-up" data-delay="80"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g2" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item reveal-up" data-delay="160"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g3" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item gi-wide reveal-up" data-delay="240"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g4" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item reveal-up" data-delay="320"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g5" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+      </div>
+    </div>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+      <button class="lb-close" id="lbClose"><i class="fa-solid fa-xmark"></i></button>
+      <img id="lbImg" src="" alt="Gallery Full" />
+    </div>
+  </section>
+<!-- ═════════════════ QUICK PANELS ═════════════════ -->
+
+<section id="quick-panels">
+
+  <button class="quick-panel-btn" data-panel="store-overlay">
+    <span>STORE</span>
+  </button>
+
+  <button class="quick-panel-btn" data-panel="merch-overlay">
+    <span>MERCH</span>
+  </button>
+
+  <button class="quick-panel-btn" data-panel="tour-overlay">
+    <span>TOUR</span>
+  </button>
+
+  <button class="quick-panel-btn" data-panel="connect-overlay">
+    <span>CONNECT</span>
+  </button>
+
+</section>
+
+  <!-- ═══════════════════════════ SOCIAL ═══════════════════════════ -->
+  <section id="social" class="section-pad">
+    <div class="container">
+      <h2 class="section-title reveal-up text-center">Follow the <em>Frequency</em></h2>
+      <div class="social-row">
+        <a href="#" class="soc-btn soc-spotify" title="Spotify"><i class="fa-brands fa-spotify"></i><span>Spotify</span></a>
+        <a href="#" class="soc-btn soc-youtube" title="YouTube"><i class="fa-brands fa-youtube"></i><span>YouTube</span></a>
+        <a href="#" class="soc-btn soc-instagram" title="Instagram"><i class="fa-brands fa-instagram"></i><span>Instagram</span></a>
+        <a href="#" class="soc-btn soc-tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i><span>TikTok</span></a>
+        <a href="#" class="soc-btn soc-twitter" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i><span>Twitter</span></a>
+        <a href="#" class="soc-btn soc-facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i><span>Facebook</span></a>
+        <a href="#" class="soc-btn soc-snapchat" title="Snapchat"><i class="fa-brands fa-snapchat"></i><span>Snapchat</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ OVERLAYS ═════════════════ -->
+
+<div class="overlay-panel" id="store-overlay">
+  <button class="overlay-close">×</button>
+
+  <div class="overlay-content">
+    <h2>STORE</h2>
+    <p>Exclusive drops, collectibles, vinyls, and limited releases.</p>
+  </div>
+</div>
+
+<div class="overlay-panel" id="merch-overlay">
+  <button class="overlay-close">×</button>
+
+  <div class="overlay-content">
+    <h2>MERCH</h2>
+    <p>Wear the world. Premium artist apparel and visuals.</p>
+  </div>
+</div>
+
+<div class="overlay-panel" id="tour-overlay">
+  <button class="overlay-close">×</button>
+
+  <div class="overlay-content">
+    <h2>TOUR</h2>
+    <p>Upcoming performances, experiences, and live dates.</p>
+  </div>
+</div>
+
+<div class="overlay-panel" id="connect-overlay">
+  <button class="overlay-close">×</button>
+
+  <div class="overlay-content">
+    <h2>CONNECT</h2>
+    <p>Bookings, collaborations, creative direction, and partnerships.</p>
+  </div>
+</div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 NISSI. All Rights Reserved.</p>
+    <p class="footer-sub">Crafted in the frequency between worlds.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
