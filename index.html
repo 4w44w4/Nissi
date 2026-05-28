@@ -15,7 +15,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
-<body>
+<body class="loading">
+
+  <!-- LOADING SCREEN -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">NISSI</div>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+  </div>
 
   <!-- PARTICLES CANVAS -->
   <canvas id="particles-canvas"></canvas>
@@ -154,11 +162,6 @@
         <h2 class="section-title">Born from the<br /><em>Static</em> Between Worlds</h2>
         <p>Nissi is not a name — it's a frequency. Rising from the intersection of raw emotion and future-forward sound design, this artist crafts sonic landscapes that blur genre, time, and dimension.</p>
         <p>From midnight sessions in a home studio to stages that shake the floor, every beat is a chapter. Every track is a doorway. Step through.</p>
-        <div class="about-stats">
-          <div class="stat"><span class="stat-num">2M+</span><span class="stat-label">Monthly Listeners</span></div>
-          <div class="stat"><span class="stat-num">47</span><span class="stat-label">Releases</span></div>
-          <div class="stat"><span class="stat-num">12</span><span class="stat-label">Countries Toured</span></div>
-        </div>
       </div>
     </div>
   </section>
@@ -400,39 +403,54 @@
       <h2 class="section-title reveal-up">Watch &amp; <em>Experience</em></h2>
       <div class="video-grid">
 
+        <!-- GLOVES (embeddable) — FEATURED FIRST -->
         <div class="video-card reveal-up" data-delay="0">
-          <div class="video-embed-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/w0T-aOH9QaA?rel=0&modestbranding=1"
-              title="NISSI Video 1"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
-        <div class="video-card reveal-up" data-delay="150">
-          <div class="video-embed-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/Ou_UaFUjnS4?rel=0&modestbranding=1"
-              title="NISSI Video 2"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
-        <div class="video-card reveal-up" data-delay="300">
-          <div class="video-embed-wrap">
+          <div class="video-embed-wrap" data-video-id="BGjaGoD0YRA">
             <iframe
               src="https://www.youtube.com/embed/BGjaGoD0YRA?rel=0&modestbranding=1"
-              title="NISSI Video 3"
+              title="NISSI — Gloves Live Performance"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen>
             </iframe>
+          </div>
+          <div class="video-meta">
+            <span class="video-meta-title">Gloves — Live Performance</span>
+            <a class="video-yt-link" href="https://youtu.be/BGjaGoD0YRA" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+          </div>
+        </div>
+
+        <!-- w0T-aOH9QaA — Vevo blocked, smart fallback -->
+        <div class="video-card reveal-up" data-delay="150">
+          <div class="video-embed-wrap" data-video-id="w0T-aOH9QaA">
+            <iframe
+              src="https://www.youtube.com/embed/w0T-aOH9QaA?rel=0&modestbranding=1"
+              title="NISSI Video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-meta">
+            <span class="video-meta-title">NISSI — Official Video</span>
+            <a class="video-yt-link" href="https://youtu.be/w0T-aOH9QaA" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+          </div>
+        </div>
+
+        <!-- Ou_UaFUjnS4 — Vevo blocked, smart fallback -->
+        <div class="video-card reveal-up" data-delay="300">
+          <div class="video-embed-wrap" data-video-id="Ou_UaFUjnS4">
+            <iframe
+              src="https://www.youtube.com/embed/Ou_UaFUjnS4?rel=0&modestbranding=1"
+              title="NISSI Video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="video-meta">
+            <span class="video-meta-title">NISSI — Official Video</span>
+            <a class="video-yt-link" href="https://youtu.be/Ou_UaFUjnS4" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Watch on YouTube</a>
           </div>
         </div>
 
@@ -445,13 +463,41 @@
     <div class="container">
       <span class="section-eyebrow reveal-up">Gallery</span>
       <h2 class="section-title reveal-up">Behind the <em>Frame</em></h2>
-      <div class="gallery-grid">
-        <div class="gallery-item gi-tall reveal-up" data-delay="0"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936729/SaveClip.App_590415206_18548560813044663_8006757586851765597_n_q1v9o7.jpg" alt="Behind the frame 1" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item reveal-up" data-delay="80"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_610170127_18551751592044663_2790066514820740571_n_wjk50v.jpg" alt="Behind the frame 2" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item reveal-up" data-delay="160"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936729/SaveClip.App_590422847_18548560801044663_4724140726253730372_n_scm8un.jpg" alt="Behind the frame 3" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item gi-wide reveal-up" data-delay="240"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_673181962_18584019388044663_4158694819043133062_n_bvgiac.jpg" alt="Behind the frame 4" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item reveal-up" data-delay="320"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_590414192_18548560786044663_8971472517863732894_n_qtlxjk.jpg" alt="Behind the frame 5" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item reveal-up" data-delay="400"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936888/SaveClip.App_515158918_18515788252044663_3452862884374450170_n_m4cdrz.jpg" alt="Behind the frame 6" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+      <!-- SWIPEABLE GALLERY SLIDER -->
+      <div class="gallery-slider-wrap">
+        <div class="gallery-slider" id="gallerySlider">
+          <div class="gallery-slide">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936729/SaveClip.App_590415206_18548560813044663_8006757586851765597_n_q1v9o7.jpg" alt="Behind the frame 1" />
+            <div class="gallery-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="gallery-slide">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_610170127_18551751592044663_2790066514820740571_n_wjk50v.jpg" alt="Behind the frame 2" />
+            <div class="gallery-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="gallery-slide">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936729/SaveClip.App_590422847_18548560801044663_4724140726253730372_n_scm8un.jpg" alt="Behind the frame 3" />
+            <div class="gallery-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="gallery-slide">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_673181962_18584019388044663_4158694819043133062_n_bvgiac.jpg" alt="Behind the frame 4" />
+            <div class="gallery-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="gallery-slide">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_590414192_18548560786044663_8971472517863732894_n_qtlxjk.jpg" alt="Behind the frame 5" />
+            <div class="gallery-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+          <div class="gallery-slide">
+            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936888/SaveClip.App_515158918_18515788252044663_3452862884374450170_n_m4cdrz.jpg" alt="Behind the frame 6" />
+            <div class="gallery-hover"><i class="fa-solid fa-expand"></i></div>
+          </div>
+        </div>
+
+        <!-- Nav arrows -->
+        <button class="gallery-arrow gallery-prev" id="galleryPrev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="gallery-arrow gallery-next" id="galleryNext" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <!-- Dots -->
+        <div class="gallery-dots" id="galleryDots"></div>
       </div>
     </div>
     <!-- Lightbox -->

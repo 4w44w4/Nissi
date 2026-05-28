@@ -7,6 +7,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* ─── INIT ON LOAD ───────────────────────────────────────────── */
 window.addEventListener('load', () => {
+  // Fast loader — done in 900ms
+  const loader = document.getElementById('loader');
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add('done');
+      document.body.classList.remove('loading');
+    }, 900);
+  }
   initRevealAnimations();
   initHeroAnimation();
 });
@@ -114,18 +122,10 @@ function initRevealAnimations() {
   });
 }
 
-/* ─── LIGHTBOX ───────────────────────────────────────────────── */
+/* ─── LIGHTBOX (handled by gallery slider init below) ─────────── */
 const lightbox = document.getElementById('lightbox');
 const lbImg    = document.getElementById('lbImg');
 const lbClose  = document.getElementById('lbClose');
-document.querySelectorAll('.gallery-item').forEach(item => {
-  item.addEventListener('click', () => {
-    lbImg.src = item.querySelector('img').src;
-    lightbox.classList.add('open');
-  });
-});
-lbClose.addEventListener('click', () => lightbox.classList.remove('open'));
-lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
 
 /* ─── CONTACT FORM ───────────────────────────────────────────── */
 document.getElementById('contactForm').addEventListener('submit', e => {
@@ -609,6 +609,172 @@ console.log('%c Premium Artist Experience Loaded ', 'color:#3d9eff;font-size:0.8
     bindMeta(id);
     bindScrubber(id);
     bind3DTilt(id);
+  });
+
+})();
+
+/* ════════════════════════════════════════════════════════════════
+   VIDEO FALLBACK — detect blocked iframes, swap to thumbnail
+   ════════════════════════════════════════════════════════════════ */
+(function initVideoFallbacks() {
+  const YT_THUMB = id =>
+    `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+  const YT_URL   = id => `https://youtu.be/${id}`;
+
+  document.querySelectorAll('.video-embed-wrap[data-video-id]').forEach(wrap => {
+    const id     = wrap.dataset.videoId;
+    const iframe = wrap.querySelector('iframe');
+    if (!iframe) return;
+
+    // Give iframe 4s to load; if it errors or stays blank, swap to fallback
+    let fallbackTriggered = false;
+
+    function buildFallback() {
+      if (fallbackTriggered) return;
+      fallbackTriggered = true;
+
+      // Remove the broken iframe
+      iframe.remove();
+
+      // Build fallback thumbnail card
+      const thumb = document.createElement('div');
+      thumb.className = 'vf-thumb';
+      thumb.setAttribute('role', 'link');
+      thumb.setAttribute('tabindex', '0');
+      thumb.setAttribute('aria-label', 'Watch on YouTube');
+
+      thumb.innerHTML = `
+        <img src="${YT_THUMB(id)}"
+             onerror="this.src='https://img.youtube.com/vi/${id}/hqdefault.jpg'"
+             alt="Video thumbnail" />
+        <div class="vf-play-ring">
+          <div class="vf-play-btn"><i class="fa-solid fa-play"></i></div>
+        </div>
+        <div class="vf-label"><i class="fa-brands fa-youtube"></i> Watch on YouTube</div>
+      `;
+
+      thumb.addEventListener('click', () => window.open(YT_URL(id), '_blank', 'noopener'));
+      thumb.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') window.open(YT_URL(id), '_blank', 'noopener');
+      });
+
+      wrap.appendChild(thumb);
+
+      // Update the meta link title if possible
+      const card  = wrap.closest('.video-card');
+      const title = card ? card.querySelector('.video-meta-title') : null;
+      if (title && title.textContent.includes('Official')) {
+        title.textContent = 'NISSI — Watch on YouTube';
+      }
+    }
+
+    // Listen for iframe load error
+    iframe.addEventListener('error', buildFallback);
+
+    // Fallback: poll after 3.5s — if iframe is blank/blocked, swap it
+    setTimeout(() => {
+      // Try to detect if video was blocked by checking iframe contentDocument
+      try {
+        // Cross-origin will throw — means it loaded okay (YouTube controls visible)
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        // If we can access it and body is empty, it's blocked
+        if (!doc || !doc.body || doc.body.innerHTML.trim() === '') {
+          buildFallback();
+        }
+      } catch(e) {
+        // Cross-origin = normal YouTube loaded fine — do nothing
+      }
+    }, 3500);
+
+    // Also listen for message from YouTube iframe API indicating error
+    window.addEventListener('message', e => {
+      try {
+        const data = JSON.parse(e.data);
+        if (data && data.event === 'infoDelivery' &&
+            data.info && data.info.playerState === undefined) {
+          buildFallback();
+        }
+      } catch(_) {}
+    });
+  });
+})();
+
+/* ════════════════════════════════════════════════════════════════
+   GALLERY SWIPER SLIDER
+   ════════════════════════════════════════════════════════════════ */
+(function initGallerySlider() {
+  const slider   = document.getElementById('gallerySlider');
+  const prevBtn  = document.getElementById('galleryPrev');
+  const nextBtn  = document.getElementById('galleryNext');
+  const dotsWrap = document.getElementById('galleryDots');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lbImg');
+  const lbClose  = document.getElementById('lbClose');
+
+  if (!slider) return;
+
+  const slides = Array.from(slider.querySelectorAll('.gallery-slide'));
+  let current  = 0;
+  let startX   = 0;
+  let isDrag   = false;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    slider.style.transform = `translateX(-${current * 100}%)`;
+    dotsWrap.querySelectorAll('.gallery-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  prevBtn && prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn && nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Touch / mouse swipe
+  slider.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  slider.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+  });
+  slider.addEventListener('mousedown',  e => { startX = e.clientX; isDrag = true; });
+  slider.addEventListener('mouseup',    e => {
+    if (!isDrag) return;
+    isDrag = false;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+  });
+
+  // Keyboard arrow support
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+
+  // Auto-advance every 5s
+  let autoTimer = setInterval(() => goTo(current + 1), 5000);
+  slider.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  slider.addEventListener('mouseleave', () => {
+    autoTimer = setInterval(() => goTo(current + 1), 5000);
+  });
+
+  // Lightbox on click
+  slides.forEach(slide => {
+    slide.addEventListener('click', () => {
+      if (!lightbox || !lbImg) return;
+      lbImg.src = slide.querySelector('img').src;
+      lightbox.classList.add('open');
+    });
+  });
+  if (lbClose) lbClose.addEventListener('click', () => lightbox.classList.remove('open'));
+  if (lightbox) lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) lightbox.classList.remove('open');
   });
 
 })();
