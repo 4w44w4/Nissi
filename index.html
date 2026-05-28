@@ -151,23 +151,54 @@
   </section>
 
   <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
-  <section id="about" class="section-pad">
-    <div class="container split-layout">
-      <div class="split-img reveal-left">
-        <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879551/SaveClip.App_619214443_18554891209044663_5033763532246389721_n_uv8qec.jpg" alt="Nissi portrait" />
-        <div class="img-frame-deco"></div>
-      </div>
-      <div class="split-text reveal-right">
-        <span class="section-eyebrow">Origin Story</span>
-        <h2 class="section-title">Born from the<br /><em>Static</em> Between Worlds</h2>
-        <p>Nissi is not a name — it's a frequency. Rising from the intersection of raw emotion and future-forward sound design, this artist crafts sonic landscapes that blur genre, time, and dimension.</p>
-        <p>From midnight sessions in a home studio to stages that shake the floor, every beat is a chapter. Every track is a doorway. Step through.</p>
-      </div>
+  <section id="about" style="padding:0; margin:0; position:relative; overflow:hidden;">
+
+    <!-- Image cropped at ~72% height (the green line / waist area) -->
+    <div style="
+      width:100%;
+      height:72vw;
+      max-height:580px;
+      min-height:280px;
+      overflow:hidden;
+      position:relative;
+    ">
+      <img
+        src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879551/SaveClip.App_619214443_18554891209044663_5033763532246389721_n_uv8qec.jpg"
+        alt="Nissi portrait"
+        style="
+          width:100%;
+          height:100%;
+          object-fit:cover;
+          object-position:center top;
+          display:block;
+        "
+      />
+      <!-- Gradient fade at the bottom so text flows in naturally -->
+      <div style="
+        position:absolute;
+        bottom:0; left:0; right:0;
+        height:55%;
+        background: linear-gradient(to bottom, transparent 0%, var(--bg, #0d0d0d) 100%);
+      "></div>
     </div>
+
+    <!-- Text block starts from the green-line point, pulled up to overlap the fade -->
+    <div class="container reveal-up" style="
+      position:relative;
+      margin-top:-60px;
+      padding-bottom:40px;
+      z-index:2;
+    ">
+      <span class="section-eyebrow">Origin Story</span>
+      <h2 class="section-title">Born from the<br /><em>Static</em> Between Worlds</h2>
+      <p style="max-width:620px;">Nissi is not a name — it's a frequency. Rising from the intersection of raw emotion and future-forward sound design, this artist crafts sonic landscapes that blur genre, time, and dimension.</p>
+      <p style="max-width:620px;">From midnight sessions in a home studio to stages that shake the floor, every beat is a chapter. Every track is a doorway. Step through.</p>
+    </div>
+
   </section>
 
   <!-- ═══════════════════════════ MUSIC ═══════════════════════════ -->
-  <section id="music" class="section-pad">
+  <section id="music" style="padding-top:32px;" class="section-pad">
     <div class="container">
       <span class="section-eyebrow reveal-up">Discography</span>
       <h2 class="section-title reveal-up">Latest <em>Releases</em></h2>
