@@ -4422,6 +4422,10 @@ body.loading { overflow: hidden; }
   overflow: hidden !important;
 }
 
+#about .container.reveal-up{
+  padding-top: clamp(240px, 34vw, 380px) !important;
+}
+
 /* The body paragraphs in About must use Space Mono (original font) */
 #about .container p {
   font-family: var(--font-mono) !important;
