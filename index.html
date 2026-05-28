@@ -37,9 +37,8 @@
   <nav id="navbar" style="
     display:flex;
     align-items:center;
-    justify-content:center;
-    gap:0;
-    padding:0 24px;
+    justify-content:space-between;
+    padding:0 clamp(20px, 5vw, 48px);
     position:fixed;
     top:0; left:0; right:0;
     z-index:999;
@@ -47,35 +46,20 @@
     height:56px;
     border-bottom:1px solid rgba(255,255,255,0.07);
   ">
-    <!-- Logo left -->
-    <div class="nav-logo" style="position:absolute;left:24px;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.12em;color:#fff;">NISSI</div>
+    <!-- Logo left — pinned, never overlaps -->
+    <div class="nav-logo" style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.18em;background:linear-gradient(135deg,#a259ff,#3d9eff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0;">NISSI</div>
 
-    <!-- All links centered, always visible, slash dividers like screenshot -->
-    <ul style="
-      display:flex;
-      align-items:center;
-      list-style:none;
-      margin:0; padding:0;
-      gap:0;
-    ">
-      <li><a href="#hero" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Home</a></li>
-      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
-      <li><a href="#music" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Music</a></li>
-      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
-      <li><a href="#videos" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Videos</a></li>
-      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
-      <li><a href="#tour" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Tour</a></li>
-      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
-      <li><a href="#store" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Store</a></li>
-      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
-      <li><a href="#merch" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Merch</a></li>
-      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
-      <li><a href="#contact" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Connect</a></li>
-    </ul>
-
-    <!-- Theme toggle right -->
-    <div style="position:absolute;right:24px;">
-      <button class="theme-toggle" id="themeToggle" title="Toggle theme" style="background:none;border:none;color:#fff;cursor:pointer;font-size:1rem;"><i class="fa-solid fa-circle-half-stroke"></i></button>
+    <!-- Links right side — plenty of room from logo -->
+    <div style="display:flex;align-items:center;gap:0;">
+      <ul style="display:flex;align-items:center;list-style:none;margin:0;padding:0;gap:0;">
+        <li><a href="#tour" style="font-family:'Space Mono',monospace;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,240,235,0.75);text-decoration:none;padding:0 clamp(12px,2.5vw,24px);transition:color 0.2s;" onmouseover="this.style.color='#ff7a1a'" onmouseout="this.style.color='rgba(242,240,235,0.75)'">Tour</a></li>
+        <li style="color:rgba(255,255,255,0.2);font-size:1.3rem;transform:skewX(-15deg);user-select:none;pointer-events:none;">/</li>
+        <li><a href="#store" style="font-family:'Space Mono',monospace;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,240,235,0.75);text-decoration:none;padding:0 clamp(12px,2.5vw,24px);transition:color 0.2s;" onmouseover="this.style.color='#ff7a1a'" onmouseout="this.style.color='rgba(242,240,235,0.75)'">Store</a></li>
+        <li style="color:rgba(255,255,255,0.2);font-size:1.3rem;transform:skewX(-15deg);user-select:none;pointer-events:none;">/</li>
+        <li><a href="#merch" style="font-family:'Space Mono',monospace;font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,240,235,0.75);text-decoration:none;padding:0 clamp(12px,2.5vw,24px);transition:color 0.2s;" onmouseover="this.style.color='#ff7a1a'" onmouseout="this.style.color='rgba(242,240,235,0.75)'">Merch</a></li>
+      </ul>
+      <!-- Theme toggle -->
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme" style="background:none;border:none;color:rgba(242,240,235,0.6);cursor:pointer;font-size:1rem;margin-left:clamp(8px,2vw,20px);"><i class="fa-solid fa-circle-half-stroke"></i></button>
     </div>
   </nav>
 
@@ -164,39 +148,33 @@
   <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
   <section id="about" style="padding:0; margin:0; position:relative; overflow:hidden;">
 
-    <!-- Full image — NOT cropped, fades at the bottom -->
+    <!-- Full image with fade at bottom -->
     <div style="width:100%; position:relative;">
       <img
         src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879551/SaveClip.App_619214443_18554891209044663_5033763532246389721_n_uv8qec.jpg"
         alt="Nissi portrait"
-        style="
-          width:100%;
-          display:block;
-          object-fit:cover;
-          object-position:center top;
-        "
+        style="width:100%; display:block; object-fit:cover; object-position:center top;"
       />
-      <!-- Strong bottom fade so image melts into background -->
+      <!-- Fade at bottom -->
       <div style="
         position:absolute;
         bottom:0; left:0; right:0;
-        height:65%;
-        background: linear-gradient(to bottom, transparent 0%, #0d0d0d 85%);
+        height:55%;
+        background: linear-gradient(to bottom, transparent 0%, #080808 100%);
         pointer-events:none;
       "></div>
-    </div>
-
-    <!-- Text starts below the green line — pushed down ~3 paragraph spacings from bottom of image -->
-    <div class="container reveal-up" style="
-      position:relative;
-      margin-top:96px;
-      padding-bottom:20px;
-      z-index:2;
-    ">
-      <span class="section-eyebrow">Origin Story</span>
-      <h2 class="section-title">Born from the<br /><em>Static</em> Between Worlds</h2>
-      <p style="max-width:620px; font-family:'Space Mono',monospace;">Nissi is not a name — it's a frequency. Rising from the intersection of raw emotion and future-forward sound design, this artist crafts sonic landscapes that blur genre, time, and dimension.</p>
-      <p style="max-width:620px; font-family:'Space Mono',monospace;">From midnight sessions in a home studio to stages that shake the floor, every beat is a chapter. Every track is a doorway. Step through.</p>
+      <!-- Text overlaid starting at the very top of the image -->
+      <div class="container reveal-up" style="
+        position:absolute;
+        top:0; left:0; right:0;
+        padding-top:18px;
+        z-index:3;
+      ">
+        <span class="section-eyebrow">Origin Story</span>
+        <h2 class="section-title">Born from the<br /><em>Static</em> Between Worlds</h2>
+        <p style="max-width:620px; font-family:'Space Mono',monospace;">Nissi is not a name — it's a frequency. Rising from the intersection of raw emotion and future-forward sound design, this artist crafts sonic landscapes that blur genre, time, and dimension.</p>
+        <p style="max-width:620px; font-family:'Space Mono',monospace;">From midnight sessions in a home studio to stages that shake the floor, every beat is a chapter. Every track is a doorway. Step through.</p>
+      </div>
     </div>
 
   </section>
@@ -262,6 +240,23 @@
 
       </div><!-- /spotify-stack -->
 
+      <!-- GLOVES VIDEO — sits right below Ignite -->
+      <div class="video-card reveal-up" style="margin-top:24px;" data-delay="0">
+        <div class="video-embed-wrap" data-video-id="BGjaGoD0YRA">
+          <iframe
+            src="https://www.youtube.com/embed/BGjaGoD0YRA?rel=0&modestbranding=1"
+            title="NISSI — Gloves Live Performance"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="video-meta">
+          <span class="video-meta-title">Gloves — Live Performance</span>
+          <a class="video-yt-link" href="https://youtu.be/BGjaGoD0YRA" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Watch on YouTube</a>
+        </div>
+      </div>
+
       <!-- LEGACY GRID (hidden - kept for JS compat) -->
       <div class="music-grid" style="display:none;">
         <div class="music-card reveal-up" data-delay="0">
@@ -289,36 +284,6 @@
           </div>
         </div>
       </div><!-- /hidden music-grid -->
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════ VIDEOS ═══════════════════════════ -->
-  <section id="videos" class="section-pad">
-    <div class="container">
-      <span class="section-eyebrow reveal-up">Visual Universe</span>
-      <h2 class="section-title reveal-up">Watch &amp; <em style="font-family:'Great Vibes',cursive;font-size:1.4em;letter-spacing:0.02em;">Experience</em></h2>
-      <div class="video-grid">
-
-        <!-- GLOVES (embeddable) — FEATURED FIRST -->
-        <div class="video-card reveal-up" data-delay="0">
-          <div class="video-embed-wrap" data-video-id="BGjaGoD0YRA">
-            <iframe
-              src="https://www.youtube.com/embed/BGjaGoD0YRA?rel=0&modestbranding=1"
-              title="NISSI — Gloves Live Performance"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="video-meta">
-            <span class="video-meta-title">Gloves — Live Performance</span>
-            <a class="video-yt-link" href="https://youtu.be/BGjaGoD0YRA" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> Watch on YouTube</a>
-          </div>
-        </div>
-
-
-
-      </div>
     </div>
   </section>
 
