@@ -15,20 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
-<body class="loading">
-
-  <!-- LOADING SCREEN -->
-  <div id="loader">
-    <div class="loader-inner">
-      <div class="loader-logo"></div>
-      <div class="loader-bar"><div class="loader-fill"></div></div>
-      <div class="loader-text">Loading Experience…</div>
-    </div>
-  </div>
-
-  <!-- CUSTOM CURSOR -->
-  <div id="cursor"></div>
-  <div id="cursor-trail"></div>
+<body>
 
   <!-- PARTICLES CANVAS -->
   <canvas id="particles-canvas"></canvas>
@@ -159,7 +146,7 @@
   <section id="about" class="section-pad">
     <div class="container split-layout">
       <div class="split-img reveal-left">
-        <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Nissi portrait" />
+        <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879551/SaveClip.App_619214443_18554891209044663_5033763532246389721_n_uv8qec.jpg" alt="Nissi portrait" />
         <div class="img-frame-deco"></div>
       </div>
       <div class="split-text reveal-right">
@@ -412,36 +399,43 @@
       <span class="section-eyebrow reveal-up">Visual Universe</span>
       <h2 class="section-title reveal-up">Watch &amp; <em>Experience</em></h2>
       <div class="video-grid">
+
         <div class="video-card reveal-up" data-delay="0">
-          <div class="video-thumb">
-            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Video 1" />
-            <div class="video-overlay">
-              <div class="play-ring"><i class="fa-solid fa-play"></i></div>
-            </div>
-            <span class="video-dur">3:47</span>
+          <div class="video-embed-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/w0T-aOH9QaA?rel=0&modestbranding=1"
+              title="NISSI Video 1"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
           </div>
-          <p class="video-title">Banger — Official Video</p>
         </div>
+
         <div class="video-card reveal-up" data-delay="150">
-          <div class="video-thumb">
-            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Video 2" />
-            <div class="video-overlay">
-              <div class="play-ring"><i class="fa-solid fa-play"></i></div>
-            </div>
-            <span class="video-dur">5:12</span>
+          <div class="video-embed-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/Ou_UaFUjnS4?rel=0&modestbranding=1"
+              title="NISSI Video 2"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
           </div>
-          <p class="video-title">Static Realm — Live Session</p>
         </div>
+
         <div class="video-card reveal-up" data-delay="300">
-          <div class="video-thumb">
-            <img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="Video 3" />
-            <div class="video-overlay">
-              <div class="play-ring"><i class="fa-solid fa-play"></i></div>
-            </div>
-            <span class="video-dur">4:02</span>
+          <div class="video-embed-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/BGjaGoD0YRA?rel=0&modestbranding=1"
+              title="NISSI Video 3"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
           </div>
-          <p class="video-title">Neon Cathedral — Documentary</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -452,11 +446,12 @@
       <span class="section-eyebrow reveal-up">Gallery</span>
       <h2 class="section-title reveal-up">Behind the <em>Frame</em></h2>
       <div class="gallery-grid">
-        <div class="gallery-item gi-tall reveal-up" data-delay="0"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g1" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item reveal-up" data-delay="80"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g2" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item reveal-up" data-delay="160"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g3" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item gi-wide reveal-up" data-delay="240"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g4" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
-        <div class="gallery-item reveal-up" data-delay="320"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg" alt="g5" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item gi-tall reveal-up" data-delay="0"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936729/SaveClip.App_590415206_18548560813044663_8006757586851765597_n_q1v9o7.jpg" alt="Behind the frame 1" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item reveal-up" data-delay="80"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_610170127_18551751592044663_2790066514820740571_n_wjk50v.jpg" alt="Behind the frame 2" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item reveal-up" data-delay="160"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936729/SaveClip.App_590422847_18548560801044663_4724140726253730372_n_scm8un.jpg" alt="Behind the frame 3" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item gi-wide reveal-up" data-delay="240"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_673181962_18584019388044663_4158694819043133062_n_bvgiac.jpg" alt="Behind the frame 4" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item reveal-up" data-delay="320"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936730/SaveClip.App_590414192_18548560786044663_8971472517863732894_n_qtlxjk.jpg" alt="Behind the frame 5" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
+        <div class="gallery-item reveal-up" data-delay="400"><img src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779936888/SaveClip.App_515158918_18515788252044663_3452862884374450170_n_m4cdrz.jpg" alt="Behind the frame 6" /><div class="gallery-hover"><i class="fa-solid fa-expand"></i></div></div>
       </div>
     </div>
     <!-- Lightbox -->

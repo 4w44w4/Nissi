@@ -1980,3 +1980,42 @@ footer {
   .np-info-col { padding: 20px 18px 20px 16px; gap: 10px; }
   .np-play { width: 44px !important; height: 44px !important; }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   YOUTUBE EMBED CARDS
+   ════════════════════════════════════════════════════════════════ */
+.video-embed-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #000;
+  box-shadow:
+    0 16px 40px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(255,255,255,0.06);
+}
+.video-embed-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+  border-radius: 16px;
+}
+.video-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.23,1,0.32,1),
+              box-shadow 0.35s ease;
+}
+.video-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(162,89,255,0.15);
+}
+
+/* ─── HIDE LOADER & CURSOR (removed from DOM but guard CSS too) ── */
+#loader, #cursor, #cursor-trail { display: none !important; }
+body { cursor: auto !important; }
+* { cursor: auto; }
+a, button, [role="button"], input[type="range"] { cursor: pointer; }

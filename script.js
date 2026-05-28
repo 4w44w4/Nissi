@@ -5,30 +5,11 @@
 /* ─── GSAP SETUP ─────────────────────────────────────────────── */
 gsap.registerPlugin(ScrollTrigger);
 
-/* ─── LOADER ─────────────────────────────────────────────────── */
+/* ─── INIT ON LOAD ───────────────────────────────────────────── */
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('done');
-    document.body.classList.remove('loading');
-    initRevealAnimations();
-    initHeroAnimation();
-  }, 2400);
+  initRevealAnimations();
+  initHeroAnimation();
 });
-
-/* ─── CUSTOM CURSOR ──────────────────────────────────────────── */
-const cursor = document.getElementById('cursor');
-const trail  = document.getElementById('cursor-trail');
-let mx = 0, my = 0, tx = 0, ty = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-(function animCursor() {
-  tx += (mx - tx) * 0.14;
-  ty += (my - ty) * 0.14;
-  cursor.style.left = mx + 'px';
-  cursor.style.top  = my + 'px';
-  trail.style.left  = tx + 'px';
-  trail.style.top   = ty + 'px';
-  requestAnimationFrame(animCursor);
-})();
 
 /* ─── PARTICLES ──────────────────────────────────────────────── */
 const pCanvas = document.getElementById('particles-canvas');
