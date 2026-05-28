@@ -8,7 +8,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Space+Mono:wght@400;700&family=Great+Vibes&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- GSAP -->
@@ -34,37 +34,48 @@
   </div>
 
   <!-- ═══════════════════════════ NAV ═══════════════════════════ -->
-  <nav id="navbar">
-    <div class="nav-logo">NISSI</div>
-    <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li class="nav-slash"></li>
-      <li><a href="#music">Music</a></li>
-      <li class="nav-slash"></li>
-      <li><a href="#videos">Videos</a></li>
-      <li class="nav-slash"></li>
-      <li><a href="#tour">Tour</a></li>
-      <li class="nav-slash"></li>
-      <li><a href="#store">Store</a></li>
-      <li class="nav-slash"></li>
-      <li><a href="#merch">Merch</a></li>
-      <li class="nav-slash"></li>
-      <li><a href="#contact">Connect</a></li>
+  <nav id="navbar" style="
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:0;
+    padding:0 24px;
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:999;
+    background:#0d0d0d;
+    height:56px;
+    border-bottom:1px solid rgba(255,255,255,0.07);
+  ">
+    <!-- Logo left -->
+    <div class="nav-logo" style="position:absolute;left:24px;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.12em;color:#fff;">NISSI</div>
+
+    <!-- All links centered, always visible, slash dividers like screenshot -->
+    <ul style="
+      display:flex;
+      align-items:center;
+      list-style:none;
+      margin:0; padding:0;
+      gap:0;
+    ">
+      <li><a href="#hero" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Home</a></li>
+      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
+      <li><a href="#music" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Music</a></li>
+      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
+      <li><a href="#videos" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Videos</a></li>
+      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
+      <li><a href="#tour" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Tour</a></li>
+      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
+      <li><a href="#store" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Store</a></li>
+      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
+      <li><a href="#merch" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Merch</a></li>
+      <li style="color:rgba(255,255,255,0.25);font-size:1.5rem;transform:skewX(-15deg);user-select:none;">/</li>
+      <li><a href="#contact" style="font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fff;text-decoration:none;padding:0 18px;">Connect</a></li>
     </ul>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="#hero">Home</a>
-      <a href="#music">Music</a>
-      <a href="#videos">Videos</a>
-      <a href="#tour">Tour</a>
-      <a href="#store">Store</a>
-      <a href="#merch">Merch</a>
-      <a href="#contact">Connect</a>
+
+    <!-- Theme toggle right -->
+    <div style="position:absolute;right:24px;">
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme" style="background:none;border:none;color:#fff;cursor:pointer;font-size:1rem;"><i class="fa-solid fa-circle-half-stroke"></i></button>
     </div>
   </nav>
 
@@ -153,46 +164,39 @@
   <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
   <section id="about" style="padding:0; margin:0; position:relative; overflow:hidden;">
 
-    <!-- Image cropped at ~72% height (the green line / waist area) -->
-    <div style="
-      width:100%;
-      height:72vw;
-      max-height:580px;
-      min-height:280px;
-      overflow:hidden;
-      position:relative;
-    ">
+    <!-- Full image — NOT cropped, fades at the bottom -->
+    <div style="width:100%; position:relative;">
       <img
         src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879551/SaveClip.App_619214443_18554891209044663_5033763532246389721_n_uv8qec.jpg"
         alt="Nissi portrait"
         style="
           width:100%;
-          height:100%;
+          display:block;
           object-fit:cover;
           object-position:center top;
-          display:block;
         "
       />
-      <!-- Gradient fade at the bottom so text flows in naturally -->
+      <!-- Strong bottom fade so image melts into background -->
       <div style="
         position:absolute;
         bottom:0; left:0; right:0;
-        height:55%;
-        background: linear-gradient(to bottom, transparent 0%, var(--bg, #0d0d0d) 100%);
+        height:65%;
+        background: linear-gradient(to bottom, transparent 0%, #0d0d0d 85%);
+        pointer-events:none;
       "></div>
     </div>
 
-    <!-- Text block starts from the green-line point, pulled up to overlap the fade -->
+    <!-- Text starts below the green line — pushed down ~3 paragraph spacings from bottom of image -->
     <div class="container reveal-up" style="
       position:relative;
-      margin-top:-60px;
-      padding-bottom:40px;
+      margin-top:96px;
+      padding-bottom:20px;
       z-index:2;
     ">
       <span class="section-eyebrow">Origin Story</span>
       <h2 class="section-title">Born from the<br /><em>Static</em> Between Worlds</h2>
-      <p style="max-width:620px;">Nissi is not a name — it's a frequency. Rising from the intersection of raw emotion and future-forward sound design, this artist crafts sonic landscapes that blur genre, time, and dimension.</p>
-      <p style="max-width:620px;">From midnight sessions in a home studio to stages that shake the floor, every beat is a chapter. Every track is a doorway. Step through.</p>
+      <p style="max-width:620px; font-family:'Space Mono',monospace;">Nissi is not a name — it's a frequency. Rising from the intersection of raw emotion and future-forward sound design, this artist crafts sonic landscapes that blur genre, time, and dimension.</p>
+      <p style="max-width:620px; font-family:'Space Mono',monospace;">From midnight sessions in a home studio to stages that shake the floor, every beat is a chapter. Every track is a doorway. Step through.</p>
     </div>
 
   </section>
@@ -292,7 +296,7 @@
   <section id="videos" class="section-pad">
     <div class="container">
       <span class="section-eyebrow reveal-up">Visual Universe</span>
-      <h2 class="section-title reveal-up">Watch &amp; <em>Experience</em></h2>
+      <h2 class="section-title reveal-up">Watch &amp; <em style="font-family:'Great Vibes',cursive;font-size:1.4em;letter-spacing:0.02em;">Experience</em></h2>
       <div class="video-grid">
 
         <!-- GLOVES (embeddable) — FEATURED FIRST -->
@@ -322,7 +326,7 @@
   <section id="gallery" class="section-pad">
     <div class="container">
       <span class="section-eyebrow reveal-up">Gallery</span>
-      <h2 class="section-title reveal-up">Behind the <em>Frame</em></h2>
+      <h2 class="section-title reveal-up" style="font-family:'Dancing Script',cursive;font-size:2.8rem;font-weight:700;">Behind the <em style="font-family:'Great Vibes',cursive;font-size:1.15em;">Frame</em></h2>
       <!-- SWIPEABLE GALLERY SLIDER -->
       <div class="gallery-slider-wrap">
         <div class="gallery-slider" id="gallerySlider">
@@ -370,7 +374,7 @@
   <!-- ═══════════════════════════ SOCIAL ═══════════════════════════ -->
   <section id="social" class="section-pad">
     <div class="container">
-      <h2 class="section-title reveal-up text-center">Follow the <em>Frequency</em></h2>
+      <h2 class="section-title reveal-up text-center" style="font-family:'Great Vibes',cursive;font-size:3.6rem;font-weight:400;letter-spacing:0.02em;">Follow the <em style="font-family:'Great Vibes',cursive;font-style:normal;">Frequency</em></h2>
       <div class="social-row">
         <a href="#" class="soc-btn soc-spotify" title="Spotify"><i class="fa-brands fa-spotify"></i><span>Spotify</span></a>
         <a href="#" class="soc-btn soc-youtube" title="YouTube"><i class="fa-brands fa-youtube"></i><span>YouTube</span></a>

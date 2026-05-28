@@ -4323,3 +4323,138 @@ body.loading { overflow: hidden; }
   max-width: 760px;
   margin: 0 auto;
 }
+
+/* ════════════════════════════════════════════════════════════════
+   CUSTOM OVERRIDES — Applied per revision
+   ════════════════════════════════════════════════════════════════ */
+
+/* ─── GIRLY FONTS IMPORT (mirrored here for reference) ───────── */
+/* Great Vibes, Dancing Script, Playfair Display loaded in HTML <head> */
+
+/* ─── NAV — Flat always-visible bar (matching screenshot) ──────
+   Override the original navbar so ALL links sit across the top,
+   no hamburger, centered items, slash dividers visible always.     */
+#navbar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: var(--nav-h) !important;
+  padding: 0 clamp(1rem, 4vw, 3rem) !important;
+  background: rgba(8,8,8,0.92) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  border-bottom: 1px solid var(--border) !important;
+  position: fixed !important;
+  top: 0; left: 0; right: 0 !important;
+  z-index: 100 !important;
+}
+
+/* Hide the old hamburger button entirely */
+#navbar .hamburger,
+#navbar button.hamburger { display: none !important; }
+
+/* Hide the mobile menu (we're going flat) */
+#navbar .mobile-menu,
+.mobile-menu { display: none !important; }
+
+/* Logo pinned left */
+#navbar .nav-logo {
+  position: absolute;
+  left: clamp(1rem, 3vw, 2.5rem);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.2em;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Theme toggle pinned right */
+#navbar .nav-right,
+#navbar .theme-toggle {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2.5rem);
+}
+
+/* Nav links — always visible, centered, no gap overflow on mobile */
+#navbar .nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-wrap: nowrap !important;
+}
+
+#navbar .nav-links li a {
+  font-family: var(--font-mono) !important;
+  font-size: clamp(0.55rem, 1.1vw, 0.7rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--white) !important;
+  padding: 0 clamp(8px, 1.5vw, 18px) !important;
+  text-decoration: none !important;
+  transition: color 0.25s ease !important;
+  white-space: nowrap !important;
+}
+
+#navbar .nav-links li a:hover { color: var(--orange) !important; }
+#navbar .nav-links li a::after { display: none !important; }
+
+/* Slash dividers */
+#navbar .nav-links li.nav-slash {
+  color: rgba(255,255,255,0.22) !important;
+  font-size: 1.4rem !important;
+  font-weight: 100 !important;
+  transform: skewX(-15deg) !important;
+  user-select: none !important;
+  pointer-events: none !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+/* ─── ABOUT SECTION — Full image + fade + text pushed down ───── */
+#about {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  overflow: hidden !important;
+}
+
+/* The body paragraphs in About must use Space Mono (original font) */
+#about .container p {
+  font-family: var(--font-mono) !important;
+  color: var(--muted) !important;
+  line-height: 1.8 !important;
+  font-size: 0.85rem !important;
+  max-width: 620px !important;
+  margin-bottom: 1.25rem !important;
+}
+
+/* ─── WATCH & EXPERIENCE — girly accent on "Experience" ─────── */
+/* Handled inline in HTML with Great Vibes font */
+
+/* ─── BEHIND THE FRAME — full girly heading ─────────────────── */
+/* Handled inline in HTML with Dancing Script + Great Vibes */
+
+/* ─── FOLLOW THE FREQUENCY — sweet cursive ──────────────────── */
+/* Handled inline in HTML with Great Vibes at large size */
+
+/* Ensure social section title inherits the inline font override */
+#social .section-title {
+  line-height: 1.1 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* ─── RESPONSIVE: collapse nav on small screens ─────────────── */
+@media (max-width: 680px) {
+  #navbar .nav-links li.nav-slash { display: none !important; }
+  #navbar .nav-links li a {
+    font-size: 0.5rem !important;
+    padding: 0 6px !important;
+    letter-spacing: 0.06em !important;
+  }
+  #navbar .nav-logo { font-size: 1.1rem !important; }
+}
+
