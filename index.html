@@ -178,20 +178,35 @@
   <!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
   <section id="about" style="padding:0; margin:0; position:relative; background:#080808;">
 
-    <!-- Photo: natural height, gradient fades bottom into dark -->
+    <!-- Photo: natural height, gradient fades into dark on all edges -->
     <div style="width:100%; position:relative; overflow:hidden;">
       <img
         id="aboutImg"
         src="https://res.cloudinary.com/dsetw6lec/image/upload/v1779879551/SaveClip.App_619214443_18554891209044663_5033763532246389721_n_uv8qec.jpg"
         alt="Nissi portrait"
-        style="width:100%; display:block; object-fit:cover; object-position:center top; will-change:transform;"
+        style="width:100%; display:block; object-fit:cover; object-position:center top; will-change:transform; filter:brightness(0.72) contrast(1.08);"
       />
-      <!-- Gradient fade: transparent → solid dark over the bottom 45% of the photo -->
+      <!-- Top fade: blend in from section above -->
+      <div style="
+        position:absolute;
+        top:0; left:0; right:0;
+        height:22%;
+        background: linear-gradient(to bottom, #080808 0%, transparent 100%);
+        pointer-events:none;
+      "></div>
+      <!-- Bottom fade: long, deep fade into dark -->
       <div style="
         position:absolute;
         bottom:0; left:0; right:0;
-        height:45%;
-        background: linear-gradient(to bottom, transparent 0%, #080808 100%);
+        height:72%;
+        background: linear-gradient(to bottom, transparent 0%, rgba(8,8,8,0.72) 55%, #080808 100%);
+        pointer-events:none;
+      "></div>
+      <!-- Side vignettes for depth -->
+      <div style="
+        position:absolute;
+        inset:0;
+        background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%);
         pointer-events:none;
       "></div>
     </div>
@@ -791,12 +806,31 @@
       background-image: url('https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_618828134_18554891206044663_2451804228736720368_n_nyrlqe.jpg') !important;
     }
 
-    /* ── Smooth transition for both the background and overlay on theme switch ── */
+    /* ══════════════════════════════════════════
+       SMOOTH THEME TRANSITIONS — whole page
+       ══════════════════════════════════════════ */
+    #bg-overlay,
+    #navbar,
+    #player-section,
+    #about,
+    #music,
+    #gallery,
+    #social,
+    footer,
+    .section-title,
+    .section-eyebrow,
+    .hero-title,
+    .hero-sub,
+    .hero-tagline,
+    body {
+      transition:
+        background   0.55s ease,
+        background-color 0.55s ease,
+        color        0.55s ease,
+        border-color 0.55s ease;
+    }
     #bg-fixed {
       transition: background-image 0.5s ease;
-    }
-    #bg-overlay {
-      transition: background 0.5s ease;
     }
 
     /* ── Light theme: dim the overlay so the photo stays visible ── */
