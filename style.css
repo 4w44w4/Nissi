@@ -126,7 +126,7 @@ body:has(a:hover) #cursor, body:has(button:hover) #cursor {
 /* ─── FIXED BACKGROUND ───────────────────────────────────────── */
 #bg-fixed {
   position: fixed; inset: 0; z-index: 1;
-  background: url('https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg') center/cover no-repeat;
+  background: url('https://res.cloudinary.com/dsetw6lec/image/upload/v1780086042/SaveClip.App_706781011_18096289190466122_3548972274547885212_n_h60hbi.jpg') center/cover no-repeat;
 }
 #bg-overlay {
   position: absolute; inset: 0;
@@ -2147,7 +2147,7 @@ body:has(a:hover) #cursor, body:has(button:hover) #cursor {
 /* ─── FIXED BACKGROUND ───────────────────────────────────────── */
 #bg-fixed {
   position: fixed; inset: 0; z-index: 1;
-  background: url('https://res.cloudinary.com/dsetw6lec/image/upload/v1779879570/SaveClip.App_674448062_18584144149044663_5985935693458071722_n_jfratm.jpg') center/cover no-repeat;
+  background: url('https://res.cloudinary.com/dsetw6lec/image/upload/v1780086042/SaveClip.App_706781011_18096289190466122_3548972274547885212_n_h60hbi.jpg') center/cover no-repeat;
 }
 #bg-overlay {
   position: absolute; inset: 0;
